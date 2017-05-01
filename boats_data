@@ -1,0 +1,23 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+boats_data = pd.read_clipboard(sep='\t') #read from clipboard
+set(boats_data["Month"])
+boats_data.loc[boats_data['Month'] == 'January', 'Month'] = 1
+boats_data.loc[boats_data['Month'] == 'February', 'Month'] = 2
+boats_data.loc[boats_data['Month'] == 'March', 'Month'] = 3
+
+set(boats_data)              
+tmp_data=boats_data.loc[(boats_data['site'] == 'yachtworld.com') & (boats_data['device'] == 'desktop') & (boats_data['Year'] == 2017)]
+#x=np.linspace(min(set(tmp_data.Month)), max(set(tmp_data.Month)), 200)
+x=list(set(tmp_data.Month))
+y=tmp_data["SW value"]
+
+#plot
+plt.figure(1, figsize = (8,4) )
+plt.plot(x, y, 'b-', label='SW Data', linewidth=2.0)
+plt.plot(x, tmp_data["GA value"], 'r-', label="GA Data", linewidth=2.0)
+plt.xlabel('Month')
+plt.ylabel('Visits')
+plt.legend(loc='upper right')
+plt.show()

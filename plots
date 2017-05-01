@@ -1,0 +1,25 @@
+#graphs:
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+plt.plot([1,2,3,4])
+plt.ylabel('some numbers')
+plt.show()
+
+plt.plot([1,2,3,4], [1,4,9,16], 'ro')
+plt.axis([0, 6, 0, 20])
+plt.show()
+
+t = np.arange(0., 5., 0.2) # from 0 to 5 in 0.2 steps
+plt.plot(t, t, 'r--', t, t**2, 'bs', t, t**3, 'g^') # red dashes, blue squares and green triangles
+plt.show()
+
+#design:
+x=np.array([1,4,18])
+y=x*x
+plt.plot(x,y, linewidth=2.0)        
+plt.xlabel('Smarts')
+plt.ylabel('Probability')
+plt.title('Histogram of IQ')
+plt.axis([1, 20, 0, 200])
+plt.show()
