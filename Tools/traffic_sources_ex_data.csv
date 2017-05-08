@@ -1,0 +1,77 @@
+year,Month,Traffic Type,Device Category,Sessions,Users,Bounce Rate,clickout GCL (Goal 1 Conversion Rate),Pageviews,Unique Pageviews,Measurement
+2017,January,direct,desktop,17662,16559,91.12%,0.00%,20030,19423,GA
+2017,January,direct,mobile,8779,7628,89.34%,0.00%,9772,9110,GA
+2017,January,direct,tablet,2302,1348,90.96%,0.00%,2581,2427,GA
+2017,January,organic,desktop,166,108,42.17%,0.00%,585,369,GA
+2017,January,organic,mobile,32,27,81.25%,0.00%,36,36,GA
+2017,January,organic,tablet,18,16,83.33%,0.00%,23,22,GA
+2017,January,paid,desktop,31219,27669,65.78%,0.00%,33508,31853,GA
+2017,January,paid,mobile,48046,41625,86.80%,0.00%,51378,49117,GA
+2017,January,paid,tablet,16714,14371,86.51%,0.01%,18091,17136,GA
+2017,January,referral,desktop,1183,986,77.77%,0.00%,1963,1557,GA
+2017,January,referral,mobile,4834,4423,88.79%,0.00%,5274,4989,GA
+2017,January,referral,tablet,979,902,84.88%,0.00%,1149,1057,GA
+2017,Feb,direct,desktop,106448,84874,87.46%,0.00%,128564,122471,GA
+2017,Feb,direct,mobile,53215,33467,93.87%,0.00%,57414,56017,GA
+2017,Feb,direct,tablet,15079,10180,92.27%,0.00%,16433,16161,GA
+2017,Feb,organic,desktop,1488,1358,61.42%,0.00%,2047,1866,GA
+2017,Feb,organic,mobile,2048,1915,85.06%,0.00%,2250,2105,GA
+2017,Feb,organic,tablet,481,448,83.58%,0.00%,521,487,GA
+2017,Feb,paid,desktop,58331,51142,64.80%,0.00%,63460,59715,GA
+2017,Feb,paid,mobile,79708,69061,84.72%,0.00%,86301,81185,GA
+2017,Feb,paid,tablet,27319,23604,87.31%,0.00%,30003,28077,GA
+2017,Feb,referral,desktop,1686,1408,56.41%,0.00%,4378,3316,GA
+2017,Feb,referral,mobile,4226,3965,88.71%,0.00%,4666,4407,GA
+2017,Feb,referral,tablet,882,823,84.13%,0.00%,1049,950,GA
+2017,March,direct,desktop,371682,324711,89.50%,0.66%,435323,422060,GA
+2017,March,organic,desktop,6826,6224,64.93%,23.12%,10134,9097,GA
+2017,March,paid,desktop,226121,193643,65.30%,29.45%,254781,233980,GA
+2017,March,referral,desktop,5110,4656,40.65%,14.89%,10039,9619,GA
+2017,March,direct,mobile,216904,70089,91.78%,0.17%,238503,236912,GA
+2017,March,organic,mobile,5619,5224,82.63%,3.61%,6302,5685,GA
+2017,March,paid,mobile,193377,161272,79.77%,4.06%,223660,196736,GA
+2017,March,referral,mobile,714,691,69.89%,1.54%,955,913,GA
+2017,March,direct,tablet,57137,28784,89.15%,0.31%,64706,63905,GA
+2017,March,organic,tablet,2529,2379,82.29%,3.68%,2810,2592,GA
+2017,March,paid,tablet,96428,81258,79.96%,3.74%,109727,98740,GA
+2017,March,referral,tablet,384,353,72.14%,2.86%,490,408,GA
+2017,April,direct,desktop,351593,297502,90.06%,0.25%,406527,397316,GA
+2017,April,direct,mobile,304509,84651,91.89%,0.02%,333512,331824,GA
+2017,April,direct,tablet,68493,22873,88.02%,0.10%,78418,77724,GA
+2017,April,organic,desktop,2088,1796,81.18%,8.43%,2898,2586,GA
+2017,April,organic,mobile,1345,1260,88.40%,2.45%,1570,1450,GA
+2017,April,organic,tablet,491,468,87.17%,3.26%,580,535,GA
+2017,April,paid,desktop,221458,191853,80.06%,14.21%,247503,228989,GA
+2017,April,paid,mobile,195656,165411,84.47%,5.35%,220262,198818,GA
+2017,April,paid,tablet,97683,84374,85.13%,5.55%,108922,100275,GA
+2017,April,referral,desktop,5490,4598,60.22%,4.83%,10188,9789,GA
+2017,April,referral,mobile,547,529,80.26%,1.28%,687,658,GA
+2017,April,referral,tablet,127,116,92.91%,0.00%,136,132,GA
+2017,January,Direct,desktop,1146,,0.923076923,,1294.979869,,SW
+2017,Feb,Direct,desktop,19024,,0.839859917,,25246.77346,,SW
+2017,March,Direct,desktop,50072,,0.870430356,,60143.63734,,SW
+2017,April,Direct,desktop,78357,,0.877067552,,95746.9714,,SW
+2017,January,Display Ads,desktop,418,,0.6,,1481.426381,,SW
+2017,Feb,Display Ads,desktop,2261,,1,,2261,,SW
+2017,March,Display Ads,desktop,7513,,0.887184116,,8528.459792,,SW
+2017,April,Display Ads,desktop,7673,,0.872294928,,8808.583458,,SW
+2017,January,Mail,desktop,0,,,,0,,SW
+2017,Feb,Mail,desktop,0,,,,0,,SW
+2017,March,Mail,desktop,0,,,,0,,SW
+2017,April,Mail,desktop,0,,,,0,,SW
+2017,January,Organic Search,desktop,3861,,0.861788618,,4347.136322,,SW
+2017,Feb,Organic Search,desktop,5866,,0.827380952,,7252.565161,,SW
+2017,March,Organic Search,desktop,20933,,0.835271318,,25580.8146,,SW
+2017,April,Organic Search,desktop,95943,,0.860510806,,114940.1874,,SW
+2017,January,Paid Search,desktop,21489,,0.925925926,,23457.30737,,SW
+2017,Feb,Paid Search,desktop,33006,,0.888366627,,40189.54769,,SW
+2017,March,Paid Search,desktop,133422,,0.828100222,,177769.866,,SW
+2017,April,Paid Search,desktop,69225,,0.77270663,,97402.63808,,SW
+2017,January,Referrals,desktop,2743,,0.925925926,,3034.687396,,SW
+2017,Feb,Referrals,desktop,7770,,0.611650485,,17326.6926,,SW
+2017,March,Referrals,desktop,22032,,0.851711027,,27230.18271,,SW
+2017,April,Referrals,desktop,18410,,0.882211538,,21327.30838,,SW
+2017,January,Social,desktop,0,,,,0,,SW
+2017,Feb,Social,desktop,0,,,,0,,SW
+2017,March,Social,desktop,42,,,,84,,SW
+2017,April,Social,desktop,0,,,,0,,SW
