@@ -1,35 +1,41 @@
-import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 
-n = 1024
-X = np.random.normal(0,1,n)
-Y = np.random.normal(0,1,n)
+#data = pd.read_clipboard(sep='\t') #read from clipboard
+data = pd.read_csv("gradient_descent_example_data.csv", sep=",", header=None)
+data = pd.read_clipboard(sep='\t', header=None)
+print(data.columns.values) #show col names:
+data.columns = ['year','month', 'traffic', 'device', 'visits', 'users', 'bouncerate', 'clickout', 'pageviews', 'unique_pageviews', 'measurement']
+#change content of table to fit different sources.
+set(data.traffic)
+data.loc[data["traffic"]=="Referrals", ["traffic"]]="referral" #change multiple cells at once by condition
+data.loc[data["traffic"]=="Direct", ["traffic"]]="direct"
+data.loc[data["traffic"]=="Organic Search", ["traffic"]]="organic"
+data.loc[data["traffic"]=="Paid Search", ["traffic"]]="paid"
+data.loc[data["traffic"]=="Display Ads", ["traffic"]]="ads"
+data.loc[data["traffic"]=="Social", ["traffic"]]="social"
+data.loc[data["traffic"]=="Mail", ["traffic"]]="mail"
 
-plt.scatter(X,Y)
+#adding new column:
+data["device2"]=data["device"]
+data.loc[data["device2"]=="tablet", ["device2"]]="mobile"
+
+#change month string to a date object
+data["date"]=datetime.date(1984,10,21)
+for i in range(0, len(data)):
+    m = date_conv.Month2Num(data["month"][i])
+    y = data["year"][i]
+    data.loc[i,"date"] = datetime.date(y, m, 1)
+
+#plot SW against GA for organice and paid
+X = data.loc[(data["traffic"]=="paid") & (data["measurement"]=="SW"), ["date"]]
+Y = data.loc[(data["traffic"]=="paid") & (data["measurement"]=="SW"), ["visits"]]
+Y2 = data.loc[(data["traffic"] == "paid") & (data["measurement"] == "GA") & (data["device"]=="desktop"), ["visits"]]
+plt.plot (X, Y, color='lightblue', alpha=1.00, marker='o', label="SW", linewidth=2)
+plt.plot (X, Y2, color='orange', alpha=1.00, marker='o', label="GA", linewidth=2)
+plt.legend(loc="upper right")
+plt.grid(color='gray', linestyle='-', linewidth=0.05, fillstyle="full")
 plt.show()
 
 
-n = 12
-X = np.arange(n)
-Y1 = (1-X/float(n)) * np.random.uniform(0.5,1.0,n)
-Y2 = (1-X/float(n)) * np.random.uniform(0.5,1.0,n)
 
-plt.bar(X, +Y1, facecolor='#9999ff', edgecolor='white')
-plt.bar(X, -Y2, facecolor='#ff9999', edgecolor='white')
-
-for x,y in zip(X,Y1):
-    plt.text(x+0.4, y+0.05, '%.2f' % y, ha='center', va= 'bottom')
-
-plt.ylim(-1.25,+1.25)
-plt.show()
-
-def f(x,y): return (1-x/2+x**5+y**3)*np.exp(-x**2-y**2)
-
-n = 256
-x = np.linspace(-3,3,n)
-y = np.linspace(-3,3,n)
-X,Y = np.meshgrid(x,y)
-
-plt.contourf(X, Y, f(X,Y), 8, alpha=.75, cmap='jet')
-C = plt.contour(X, Y, f(X,Y), 8, colors='black', linewidth=.5)
-plt.show()
