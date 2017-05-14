@@ -1,5 +1,5 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 
 
@@ -9,7 +9,7 @@ dates = pd.date_range('20130101', periods=6)
 df = pd.DataFrame(np.random.randn(6,4), index=dates, columns=list('ABCD'))
 data = pd.read_clipboard(sep='\t') #read from clipboard
 data = pd.read_csv("traffic_sources_ex_data.csv", sep=",", header=0) #header is the line n or None
-df.columns.values[1] #colnames 
+df.columns.values[1] #colnames
 
 df.describe()#Boom, describe stat
 df.T #transpose
@@ -18,7 +18,7 @@ df.sort_values(by='B') #sorting by data
 #Getting data
 df['A']
 df.loc[:,["A", "B"]] #data by column names and line numbers
-df.loc[0:2,["A", "B"]] 
+df.loc[0:2,["A", "B"]]
 df.loc["2013-01-02", ["A"]]
 df.iloc[0] #data by position
 df.iloc[:,0]
@@ -38,7 +38,7 @@ df.apply(lambda x: x.max() - x.min())
 df["A"]=df["A"]-1
 
 s = pd.Series(np.random.randint(0, 10, size=5))
-s.value_counts()  
+s.value_counts()
 
 
 #Add a row
@@ -57,10 +57,10 @@ df = pd.DataFrame({'A' : ['foo', 'bar', 'foo', 'bar',
 'two', 'two', 'one', 'three'],
 'C' : np.random.randn(8),
 'D' : np.random.randn(8)})
-df.groupby('A').sum()   
+df.groupby('A').sum()
 df.groupby(['A','B']).sum()
 
 #pivot table
 pd.pivot_table(df, values='D', index=['B'], columns=['A']) #values are an AVG
 
-              
+
