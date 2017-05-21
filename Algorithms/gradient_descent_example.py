@@ -1,3 +1,5 @@
+#import os
+#os.path.basename(os.getcwd())
 import numpy as np
 import matplotlib.pyplot as plt #ploting the process
 
@@ -25,7 +27,7 @@ def step_gradient(b_current, m_current, points, learningRate):
         m_gradient += -(2/N) * x * (y - ((m_current * x) + b_current))
     new_b = b_current - (learningRate * b_gradient)
     new_m = m_current - (learningRate * m_gradient)
-    print new_m," ",new_b
+    #print new_m," ",new_b
     return [new_b, new_m]
 
 def gradient_descent_runner(points, starting_b, starting_m, learning_rate, num_iterations):
@@ -33,7 +35,8 @@ def gradient_descent_runner(points, starting_b, starting_m, learning_rate, num_i
     m = starting_m
     for i in range(num_iterations):
         b, m = step_gradient(b, m, points, learning_rate)
-        draw_it(points,m,b)
+        #draw_it(points,m,b)
+        draw_err(num_iterations, points, m, b)
     return [b, m]
 
 def draw_it(points, m, b):
@@ -43,13 +46,17 @@ def draw_it(points, m, b):
     plt.scatter(X, Y)
     plt.plot(X, X*m+b, color=(0.56, 0.35, 0.56))
     plt.show()
+    
+def draw_err(num_iterations, points, m, b):
+    delta=sum(points[:,1]-(points[:,0]*m+b))
+    print(str(num_iterations)+": "+str(delta))
 
 def run():
     points = np.genfromtxt("gradient_descent_example.csv", delimiter=",")
     learning_rate = 0.0001
     initial_b = 0 # initial y-intercept guess
     initial_m = 0 # initial slope guess
-    num_iterations = 1000
+    num_iterations = 100
     print "Starting gradient descent at b = {0}, m = {1}, error = {2}".format(initial_b, initial_m, compute_error_for_line_given_points(initial_b, initial_m, points))
     print "Running..."
     [b, m] = gradient_descent_runner(points, initial_b, initial_m, learning_rate, num_iterations)

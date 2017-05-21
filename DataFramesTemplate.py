@@ -43,12 +43,17 @@ s.value_counts()
 
 #Add a row
 s = pd.DataFrame(np.random.randn(1, 5), columns=['A','B','C','D','F'])
-df=df.append(s, ignore_index=True)
+df=array()
+df.append(s, ignore_index=True)
 
 #remove a column:
 s = pd.DataFrame(np.random.randn(1, 5))
-df2=df.append(s, ignore_index=True)
-df2 = df2.drop([0,1,2,3,4], 1)
+df=np.array([])
+df=s.append(s, ignore_index=True)
+df = df.drop([0,1,2,3,4], 1)
+#remove a columnn by name
+df.columns=["a","b","c","d","e"]
+df = df.drop(["a","c"],1)
 
 #Grouping or Aggregating:
 df = pd.DataFrame({'A' : ['foo', 'bar', 'foo', 'bar',
