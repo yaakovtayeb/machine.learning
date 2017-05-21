@@ -46,4 +46,4 @@ def Month2Num(month):
     cal["december"]=12
     cal["Dec"]=12
     cal["dec"]=12
-    return cal[month]th
+    return cal[month]
