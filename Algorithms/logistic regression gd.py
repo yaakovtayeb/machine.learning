@@ -4,9 +4,65 @@ import pandas as pd
 import matplotlib.pyplot as plt #ploting the process
 %matplotlib inline
 
-path = os.getcwd() + '/ex1data2.txt'
-data = pd.read_csv(path, header=None, names=['Population', 'Profit']) 
-data.head() 
+path = os.getcwd() + '/log.data.txt'
+data = pd.read_csv(path, header=None, names=['Exam 1', 'Exam 2', 'Admitted']) 
+#plot so we can see what's the deal:
+positive = data[data['Admitted'].isin([1])]  
+negative = data[data['Admitted'].isin([0])]
+fig, ax = plt.subplots(figsize=(8,6))  
+ax.scatter(positive['Exam 1'], positive['Exam 2'], s=50, c='b', marker='o', label='Admitted')  
+ax.scatter(negative['Exam 1'], negative['Exam 2'], s=50, c='r', marker='x', label='Not Admitted')  
+ax.legend()  
+ax.set_xlabel('Exam 1 Score')  
+ax.set_ylabel('Exam 2 Score')  
+# sigmoid function - a special case of the logistic function
+def sigmoid(z):  
+    return 1 / (1 + np.exp(-z))
+
+def cost(theta, X, y):  
+    theta = np.matrix(theta)
+    X = np.matrix(X)
+    y = np.matrix(y)
+    first = np.multiply(-y, np.log(sigmoid(X * theta.T)))
+    second = np.multiply((1 - y), np.log(1 - sigmoid(X * theta.T)))
+    return np.sum(first - second) / (len(X))
+
+def gradientReg(theta, X, y, learningRate):  
+    theta = np.matrix(theta)
+    X = np.matrix(X)
+    y = np.matrix(y)
+
+    parameters = int(theta.ravel().shape[1])
+    grad = np.zeros(parameters)
+
+    error = sigmoid(X * theta.T) - y
+
+    for i in range(parameters):
+        term = np.multiply(error, X[:,i])
+
+        if (i == 0):
+            grad[i] = np.sum(term) / len(X)
+        else:
+            grad[i] = (np.sum(term) / len(X)) + ((learningRate / len(X)) * theta[:,i])
+
+    return grad
+
+# add a ones column - this makes the matrix multiplication work out easier
+data.insert(0, 'Ones', 1)
+
+# set X (training data) and y (target variable)
+cols = data.shape[1]  
+X = data.iloc[:,0:cols-1]  
+y = data.iloc[:,cols-1:cols]
+
+# convert to numpy arrays and initalize the parameter array theta
+X = np.array(X.values)  
+y = np.array(y.values)  
+theta = np.zeros(cols-1)  
+
+#check the dimentions:
+X.shape, theta.shape, y.shape  
+
 data.describe()
 data.plot(kind='scatter', x='Population', y='Profit', figsize=(8,4))  
 
