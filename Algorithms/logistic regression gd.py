@@ -3,29 +3,19 @@ import numpy as np
 import pandas as pd  
 import matplotlib.pyplot as plt #ploting the process
 %matplotlib inline
-
-path = os.getcwd() + '/log.data.txt'
-data = pd.read_csv(path, header=None, names=['Exam 1', 'Exam 2', 'Admitted']) 
-#plot so we can see what's the deal:
-positive = data[data['Admitted'].isin([1])]  
-negative = data[data['Admitted'].isin([0])]
-fig, ax = plt.subplots(figsize=(8,6))  
-ax.scatter(positive['Exam 1'], positive['Exam 2'], s=50, c='b', marker='o', label='Admitted')  
-ax.scatter(negative['Exam 1'], negative['Exam 2'], s=50, c='r', marker='x', label='Not Admitted')  
-ax.legend()  
-ax.set_xlabel('Exam 1 Score')  
-ax.set_ylabel('Exam 2 Score')  
+ 
 # sigmoid function - a special case of the logistic function
 def sigmoid(z):  
     return 1 / (1 + np.exp(-z))
 
-def cost(theta, X, y):  
+def cost(theta, X, y, learningRate):  
     theta = np.matrix(theta)
     X = np.matrix(X)
     y = np.matrix(y)
     first = np.multiply(-y, np.log(sigmoid(X * theta.T)))
     second = np.multiply((1 - y), np.log(1 - sigmoid(X * theta.T)))
-    return np.sum(first - second) / (len(X))
+    reg = (learningRate / 2 * len(X)) * np.sum(np.power(theta[:,1:theta.shape[1]], 2))
+    return np.sum(first - second) / (len(X)) + reg
 
 def gradientReg(theta, X, y, learningRate):  
     theta = np.matrix(theta)
@@ -47,24 +37,48 @@ def gradientReg(theta, X, y, learningRate):
 
     return grad
 
-# add a ones column - this makes the matrix multiplication work out easier
-data.insert(0, 'Ones', 1)
+path = os.getcwd() + '/github/machine.learning/Algorithms/log.data.txt'
+data = pd.read_csv(path, header=None, names=['Exam 1', 'Exam 2', 'Admitted']) 
+data.describe()
+
+#plot so we can see what's the deal:
+positive = data[data['Admitted'].isin([1])]  
+negative = data[data['Admitted'].isin([0])]
+fig, ax = plt.subplots(figsize=(8,6))  
+ax.scatter(positive['Exam 1'], positive['Exam 2'], s=50, c='b', marker='o', label='Admitted')  
+ax.scatter(negative['Exam 1'], negative['Exam 2'], s=50, c='r', marker='x', label='Not Admitted')  
+ax.legend()  
+ax.set_xlabel('Exam 1 Score')  
+ax.set_ylabel('Exam 2 Score') 
+
+#Add variables with some power to include weird shapes
+degree = 5 
+x1 = data['Exam 1']  
+x2 = data['Exam 2']
+data.insert(3, 'Ones', 1)
+for i in range(1, degree):  
+    for j in range(0, i):
+        data['F' + str(i) + str(j)] = np.power(x1, i-j) * np.power(x2, j)
+data.drop('Exam 1', axis=1, inplace=True)  
+data.drop('Exam 2', axis=1, inplace=True)
+data.head()
 
 # set X (training data) and y (target variable)
 cols = data.shape[1]  
-X = data.iloc[:,0:cols-1]  
-y = data.iloc[:,cols-1:cols]
+X = data.iloc[:,1:cols]  
+y = data.iloc[:,0:1]
 
 # convert to numpy arrays and initalize the parameter array theta
 X = np.array(X.values)  
 y = np.array(y.values)  
 theta = np.zeros(cols-1)  
-
+learningRate = 1
 #check the dimentions:
 X.shape, theta.shape, y.shape  
 
-data.describe()
-data.plot(kind='scatter', x='Population', y='Profit', figsize=(8,4))  
+costReg(theta2, X2, y2, learningRate) 
+
+
 
 def computeCost(X, y, theta):  
     inner = np.power(((X * theta.T) - y), 2)
