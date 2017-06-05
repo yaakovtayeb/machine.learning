@@ -1,36 +1,91 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import date_conv
+
+def Month2Num(month):
+    if type(month)==str:
+        month=month.strip()
+    cal = {}
+    cal["January"]=1
+    cal["january"]=1
+    cal["Jan"]=1
+    cal["jan"]=1
+    cal["February"]=2
+    cal["february"]=2
+    cal["Feb"]=2
+    cal["jan"]=2
+    cal["March"]=3
+    cal["march"]=3
+    cal["Mar"]=3
+    cal["jan"]=3
+    cal["April"]=4
+    cal["april"]=4
+    cal["Apr"]=4
+    cal["jan"]=4
+    cal["May"]=5
+    cal["may"]=5
+    cal["June"]=6
+    cal["june"]=6
+    cal["Jun"]=6
+    cal["jun"]=6
+    cal["July"]=7
+    cal["july"]=7
+    cal["Jul"]=7
+    cal["jul"]=7
+    cal["August"]=8
+    cal["august"]=8
+    cal["Aug"]=8
+    cal["aug"]=8
+    cal["September"]=9
+    cal["september"]=9
+    cal["Sep"]=9
+    cal["sep"]=9
+    cal["October"]=10
+    cal["october"]=10
+    cal["Oct"]=10
+    cal["oct"]=10
+    cal["November"]=11
+    cal["november"]=11
+    cal["Nov"]=11
+    cal["nov"]=11
+    cal["December"]=12
+    cal["december"]=12
+    cal["Dec"]=12
+    cal["dec"]=12
+    if month in cal:
+        return cal[month]
+    else:
+        return month
 
 data = pd.read_clipboard(sep='\t') #read from clipboard
 show_plots=True
 #change month names to numbers
 for i in range(0, len(data["Month"])):
-    data.loc[i,"Month"] = date_conv.Month2Num(data.loc[i,"Month"])
+    data.loc[i,"Month"] = Month2Num(data.loc[i,"Month"])
 
 #remove commas:
-data["SW value"]=data["SW value"].str.replace("\,","").astype('float')
+data["SW-US"]=data["SW-US"].str.replace("\,","").astype('float')
+data["SW-WW"]=data["SW-WW"].str.replace("\,","").astype('float')
 data["GA value"]=data["GA value"].str.replace("\,","").astype('float')
 
 #x=list(set(data.Month))
 summary=list()
 local_summary={}
-for sites in set(data["Site"]):
-    local_summary["Site"]=sites
-    for y in set(data["Year"]):
+for sites in set(data["site"]):
+    local_summary["site"]=sites
+    for y in set(data["year"]):
         local_summary["year"]=y
-        for devices in set(data["Device"]):
-            tmp_data = data.loc[(data['Site'] == sites) & (data['Device'] == devices) & (data['Year'] == y)]
-            y_sw = tmp_data["SW value"]
-            y_ga = tmp_data["GA value"]
+        for devices in set(data["device"]):
+            tmp_data = data.loc[(data['site'] == sites) & (data['device'] == devices) & (data['year'] == y)]
+            y_sw = tmp_data["SW"]
+            y_ga = tmp_data["visits"]
             local_summary["device"]=devices
-            x = tmp_data["Month"]
+            x = tmp_data["month"]
             #plot
             plt.figure(1, figsize = (8,4))
             plt.plot(x, y_sw, 'b-', label='SW Data', linewidth=2.0)
             plt.plot(x, y_ga, 'r-', label="GA Data", linewidth=2.0)
-            plt.xlabel('Month')
+            plt.xlabel('month')
             plt.ylabel('Visits')
             plt.legend(loc='upper right')
             plt.suptitle("%s (%d) - %s" % (sites, y, devices))

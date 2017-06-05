@@ -46,11 +46,15 @@ s = pd.DataFrame(np.random.randn(1, 5), columns=['A','B','C','D','F'])
 df=array()
 df.append(s, ignore_index=True)
 
+#add a clo
+
+
 #remove a column:
 s = pd.DataFrame(np.random.randn(1, 5))
 df=np.array([])
 df=s.append(s, ignore_index=True)
 df = df.drop([0,1,2,3,4], 1)
+
 #remove a columnn by name
 df.columns=["a","b","c","d","e"]
 df = df.drop(["a","c"],1)
